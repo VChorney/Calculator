@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_kurssach" default="compile.module.kurssach">
+  <dirname property="module.kurssach.basedir" file="${ant.file.module_kurssach}"/>
+  
+  <property name="module.jdk.home.kurssach" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.kurssach" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.kurssach" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.kurssach" value="-encoding UTF-8 -source 5 -target 1.5 ${compiler.args}"/>
+  
+  <property name="kurssach.output.dir" value="${module.kurssach.basedir}/target/classes"/>
+  <property name="kurssach.testoutput.dir" value="${module.kurssach.basedir}/target/test-classes"/>
+  
+  <path id="kurssach.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="kurssach.module.production.classpath">
+    <path refid="${module.jdk.classpath.kurssach}"/>
+    <path refid="library.maven:_org.projectlombok:lombok:1.16.4.classpath"/>
+  </path>
+  
+  <path id="kurssach.runtime.production.module.classpath">
+    <pathelement location="${kurssach.output.dir}"/>
+  </path>
+  
+  <path id="kurssach.module.classpath">
+    <path refid="${module.jdk.classpath.kurssach}"/>
+    <pathelement location="${kurssach.output.dir}"/>
+    <path refid="library.maven:_org.projectlombok:lombok:1.16.4.classpath"/>
+  </path>
+  
+  <path id="kurssach.runtime.module.classpath">
+    <pathelement location="${kurssach.testoutput.dir}"/>
+    <pathelement location="${kurssach.output.dir}"/>
+    <path refid="library.maven:_org.projectlombok:lombok:1.16.4.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.kurssach">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.kurssach">
+    <patternset refid="excluded.from.module.kurssach"/>
+  </patternset>
+  
+  <path id="kurssach.module.sourcepath">
+    <dirset dir="${module.kurssach.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  <path id="kurssach.module.test.sourcepath">
+    <dirset dir="${module.kurssach.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.kurssach" depends="compile.module.kurssach.production,compile.module.kurssach.tests" description="Compile module Kurssach"/>
+  
+  <target name="compile.module.kurssach.production" depends="register.custom.compilers" description="Compile module Kurssach; production classes">
+    <mkdir dir="${kurssach.output.dir}"/>
+    <javac2 destdir="${kurssach.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.kurssach}/javac">
+      <compilerarg line="${compiler.args.kurssach}"/>
+      <bootclasspath refid="kurssach.module.bootclasspath"/>
+      <classpath refid="kurssach.module.production.classpath"/>
+      <src refid="kurssach.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.kurssach"/>
+    </javac2>
+    
+    <copy todir="${kurssach.output.dir}">
+      <fileset dir="${module.kurssach.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.kurssach.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.kurssach.tests" depends="register.custom.compilers,compile.module.kurssach.production" description="compile module Kurssach; test classes" unless="skip.tests">
+    <mkdir dir="${kurssach.testoutput.dir}"/>
+    <javac2 destdir="${kurssach.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.kurssach}/javac">
+      <compilerarg line="${compiler.args.kurssach}"/>
+      <bootclasspath refid="kurssach.module.bootclasspath"/>
+      <classpath refid="kurssach.module.classpath"/>
+      <src refid="kurssach.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.kurssach"/>
+    </javac2>
+    
+    <copy todir="${kurssach.testoutput.dir}">
+      <fileset dir="${module.kurssach.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.kurssach" description="cleanup module">
+    <delete dir="${kurssach.output.dir}"/>
+    <delete dir="${kurssach.testoutput.dir}"/>
+  </target>
+</project>
