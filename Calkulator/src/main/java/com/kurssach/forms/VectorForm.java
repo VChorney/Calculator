@@ -1,6 +1,7 @@
 package com.kurssach.forms;
 
 import com.kurssach.description.Vector;
+
 import javax.swing.JTextField;
 import javax.swing.JFrame;
 import javax.swing.JFormattedTextField;
@@ -22,10 +23,10 @@ class VectorForm extends JFrame {
     private JLabel label3 = new JLabel("X");
     private JLabel label5 = new JLabel("                                                           ");
     private JLabel label4 = new JLabel("Введіть число для множення");
-    private String[] powersForBoth = {"","1x1", "2x2", "3x3", "4x4", "5x5", "6x6", "7x7"};
+    private String[] powersForBoth = {"", "1x1", "2x2", "3x3", "4x4", "5x5", "6x6", "7x7"};
     private String[] powers = {"", "1", "2", "3", "4", "5", "6", "7"};
     private String[] actionsForMatrix = {"", "Додавання", "Віднімання", "Множення", "Множення на число"
-            ,"Транспонування"};
+            , "Транспонування"};
     private JComboBox<String> comboBox = new JComboBox<>(actionsForMatrix);
     private JComboBox<String> comboBox1 = new JComboBox<>(powersForBoth);
     private JComboBox<String> comboBox2 = new JComboBox<>(powers);
@@ -121,34 +122,36 @@ class VectorForm extends JFrame {
         GridBagConstraints gridBagLayout1 = new GridBagConstraints();
 
         for (int i = 0; i < 7; i++) {
-                gridBagLayout.weightx = 0;
-                gridBagLayout.weighty = 0;
-                gridBagLayout.gridy = i;
-                gridBagLayout.gridx = 0;
-                gridBagLayout.ipadx = 50;
-                gridBagLayout1.weightx = 0;
-                gridBagLayout1.weighty = 0;
-                gridBagLayout1.gridy = i;
-                gridBagLayout1.gridx = 0;
-                gridBagLayout1.ipadx = 50;
-                panel3.add(textFields0[i][0], gridBagLayout1);
-                panel2.add(textFields[i][0], gridBagLayout);
-                textFields[i][0].addKeyListener(new KeyAdapter() {
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-                        char c = e.getKeyChar(); if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)&&(c!='.'))
-                        { e.consume();
-                        }
+            gridBagLayout.weightx = 0;
+            gridBagLayout.weighty = 0;
+            gridBagLayout.gridy = i;
+            gridBagLayout.gridx = 0;
+            gridBagLayout.ipadx = 50;
+            gridBagLayout1.weightx = 0;
+            gridBagLayout1.weighty = 0;
+            gridBagLayout1.gridy = i;
+            gridBagLayout1.gridx = 0;
+            gridBagLayout1.ipadx = 50;
+            panel3.add(textFields0[i][0], gridBagLayout1);
+            panel2.add(textFields[i][0], gridBagLayout);
+            textFields[i][0].addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    char c = e.getKeyChar();
+                    if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != '.')) {
+                        e.consume();
                     }
-                });
-                textFields0[i][0].addKeyListener(new KeyAdapter() {
-                    @Override
-                    public void keyTyped(KeyEvent e) {
-                        char c = e.getKeyChar(); if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)&&(c!='.'))
-                        { e.consume();
-                        }
+                }
+            });
+            textFields0[i][0].addKeyListener(new KeyAdapter() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    char c = e.getKeyChar();
+                    if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != '.')) {
+                        e.consume();
                     }
-                });
+                }
+            });
         }
         for (int j = 1; j < 7; j++) {
             gridBagLayout.weightx = 0;
@@ -168,22 +171,24 @@ class VectorForm extends JFrame {
             textFields[0][j].addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyTyped(KeyEvent e) {
-                    char c = e.getKeyChar(); if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)&&(c!='.'))
-                    { e.consume();
+                    char c = e.getKeyChar();
+                    if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != '.')) {
+                        e.consume();
                     }
                 }
             });
             textFields0[0][j].addKeyListener(new KeyAdapter() {
                 @Override
                 public void keyTyped(KeyEvent e) {
-                    char c = e.getKeyChar(); if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)&&(c!='.'))
-                    { e.consume();
+                    char c = e.getKeyChar();
+                    if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != '.')) {
+                        e.consume();
                     }
                 }
             });
         }
-        gridBagLayout1.gridx=7;
-        panel3.add(label5,gridBagLayout1);
+        gridBagLayout1.gridx = 7;
+        panel3.add(label5, gridBagLayout1);
         GridBagConstraints gridBagLayout2 = new GridBagConstraints();
         gridBagLayout2.weightx = 1;
         gridBagLayout2.weighty = 1;
@@ -225,13 +230,14 @@ class VectorForm extends JFrame {
         panel6.add(button1, gridBaglayout4);
         gridBaglayout4.gridy = 1;
         gridBaglayout4.gridx = 1;
-        gridBaglayout4.ipadx=30;
+        gridBaglayout4.ipadx = 30;
         panel6.add(textField27, gridBaglayout4);
         textField27.addKeyListener(new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
-                char c = e.getKeyChar(); if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)&&(c!='.'))
-                { e.consume();
+                char c = e.getKeyChar();
+                if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != '.')) {
+                    e.consume();
                 }
             }
         });
@@ -240,7 +246,7 @@ class VectorForm extends JFrame {
         gridBagConstraints.weightx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridx = 0;
-        panel5.add(button,gridBagConstraints);
+        panel5.add(button, gridBagConstraints);
         comboBox1.setVisible(true);
         comboBox2.setVisible(false);
         textField27.setVisible(false);
@@ -258,7 +264,8 @@ class VectorForm extends JFrame {
         gridBagLayout5.gridx = 0;
         panel7.add(panel6, gridBagLayout5);
         solution();
-}
+    }
+
     private void check() {
         comboBox.addActionListener(e -> {
             setPowerOfMatrix();
@@ -277,7 +284,7 @@ class VectorForm extends JFrame {
                 label3.setVisible(false);
                 comboBox1.setVisible(true);
                 label5.setVisible(true);
-                for (int i=1;i<7;i++){
+                for (int i = 1; i < 7; i++) {
                     textFields[0][i].setVisible(false);
                     textFields0[0][i].setVisible(false);
                 }
@@ -289,7 +296,7 @@ class VectorForm extends JFrame {
                 label3.setVisible(false);
                 comboBox1.setVisible(true);
                 label5.setVisible(true);
-                for (int i=1;i<7;i++){
+                for (int i = 1; i < 7; i++) {
                     textFields[0][i].setVisible(false);
                     textFields0[0][i].setVisible(false);
                 }
@@ -301,7 +308,7 @@ class VectorForm extends JFrame {
                 label3.setVisible(false);
                 comboBox1.setVisible(true);
                 label5.setVisible(true);
-                for (int i=1;i<7;i++){
+                for (int i = 1; i < 7; i++) {
                     textFields[0][i].setVisible(false);
                     textFields0[0][i].setVisible(false);
                 }
@@ -314,7 +321,8 @@ class VectorForm extends JFrame {
                 comboBox1.setVisible(false);
             }
         });
-        }
+    }
+
     private void setPowerOfMatrix() {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
@@ -346,7 +354,8 @@ class VectorForm extends JFrame {
                 for (int i = 0; i < comboBox1.getSelectedIndex(); i++) {
                     textFields0[i][0].setVisible(true);
                 }
-            } if (comboBox.getSelectedIndex()==3){
+            }
+            if (comboBox.getSelectedIndex() == 3) {
                 for (int i = 6; i > -1; i--) {
                     textFields[i][0].setVisible(false);
 
@@ -367,7 +376,8 @@ class VectorForm extends JFrame {
                 for (int i = 0; i < comboBox1.getSelectedIndex(); i++) {
                     textFields0[i][0].setVisible(true);
                 }
-            } if(comboBox.getSelectedIndex()==4){
+            }
+            if (comboBox.getSelectedIndex() == 4) {
                 for (int i = 6; i > -1; i--) {
                     textFields[i][0].setVisible(false);
 
@@ -388,7 +398,8 @@ class VectorForm extends JFrame {
                 for (int i = 0; i < comboBox1.getSelectedIndex(); i++) {
                     textFields0[i][0].setVisible(true);
                 }
-            }if (comboBox.getSelectedIndex()==5){
+            }
+            if (comboBox.getSelectedIndex() == 5) {
                 label5.setVisible(false);
                 for (int i = 6; i > -1; i--) {
                     textFields[i][0].setVisible(false);
@@ -411,38 +422,39 @@ class VectorForm extends JFrame {
                     textFields0[0][j].setVisible(true);
                 }
             }
-                });
+        });
     }
-    private void solution(){
+
+    private void solution() {
         button.addActionListener(e -> {
-            Double[][] vect = new Double[7][7];
+            Double[][] initializationOfVector = new Double[7][7];
             for (int i = 0; i < 7; i++) {
                 for (int j = 0; j < 7; j++) {
-                    vect[i][j] = 0.0;
+                    initializationOfVector[i][j] = 0.0;
                 }
             }
-            Vector vector = new Vector(vect, vect, vect);
+            Vector vector = new Vector(initializationOfVector);
             if (comboBox.getSelectedIndex() == 1) {
                 Double[][] buff0 = new Double[comboBox1.getSelectedIndex()][1];
                 Double[][] buff1 = new Double[comboBox1.getSelectedIndex()][1];
 
-                    for (int j = 0; j < comboBox1.getSelectedIndex(); j++) {
-                        if ((textFields[j][0].getText().equals(""))){
-                            JOptionPane.showMessageDialog(null,"Заповніть вектор повністю!");
-                        }
-                        vector.add(j, 0, Double.valueOf(textFields[j][0].getText()), 1);
-                        buff0[j][0] = Double.valueOf(vector.getFirstList()[j][0].toString());
+                for (int j = 0; j < comboBox1.getSelectedIndex(); j++) {
+                    if ((textFields[j][0].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть вектор повністю!");
                     }
+                    vector.add(j, 0, Double.valueOf(textFields[j][0].getText()));
+                    buff0[j][0] = Double.valueOf(vector.getList()[j][0].toString());
+                }
 
                 for (int i = 0; i < comboBox1.getSelectedIndex(); i++) {
-                        if ((textFields0[i][0].getText().equals(""))){
-                            JOptionPane.showMessageDialog(null,"Заповніть вектор повністю!");
-                        }
-                        vector.add(i, 0, Double.valueOf(textFields0[i][0].getText()), 2);
-                        buff1[i][0] = Double.valueOf(vector.getSecondList()[i][0].toString());
+                    if ((textFields0[i][0].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть вектор повністю!");
+                    }
+                    vector.add(i, 0, Double.valueOf(textFields0[i][0].getText()));
+                    buff1[i][0] = Double.valueOf(vector.getList()[i][0].toString());
 
                 }
-                vector.plusAndMinus(comboBox1.getSelectedIndex(),1,  buff0, buff1, true);
+                vector.plusAndMinus(comboBox1.getSelectedIndex(), 1, buff0, buff1, true);
                 for (int i = 0; i < 7; i++) {
                     textFields0[i][0].setVisible(false);
                 }
@@ -450,7 +462,7 @@ class VectorForm extends JFrame {
                     textFields0[0][j].setVisible(false);
                 }
                 for (int i = 0; i < comboBox1.getSelectedIndex(); i++) {
-                        textFields[i][0].setText(String.valueOf(vector.getResultList()[i][0]));
+                    textFields[i][0].setText(String.valueOf(vector.getList()[i][0]));
                 }
             }
             if (comboBox.getSelectedIndex() == 2) {
@@ -459,22 +471,22 @@ class VectorForm extends JFrame {
                 Double[][] buff1 = new Double[comboBox1.getSelectedIndex()][1];
 
                 for (int j = 0; j < comboBox1.getSelectedIndex(); j++) {
-                    if ((textFields[j][0].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть вектор повністю!");
+                    if ((textFields[j][0].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть вектор повністю!");
                     }
-                    vector.add(j, 0, Double.valueOf(textFields[j][0].getText()), 1);
-                    buff0[j][0] = Double.valueOf(vector.getFirstList()[j][0].toString());
+                    vector.add(j, 0, Double.valueOf(textFields[j][0].getText()));
+                    buff0[j][0] = Double.valueOf(vector.getList()[j][0].toString());
                 }
 
                 for (int i = 0; i < comboBox1.getSelectedIndex(); i++) {
-                    if ((textFields0[i][0].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть вектор повністю!");
+                    if ((textFields0[i][0].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть вектор повністю!");
                     }
-                    vector.add(i, 0, Double.valueOf(textFields0[i][0].getText()), 2);
-                    buff1[i][0] = Double.valueOf(vector.getSecondList()[i][0].toString());
+                    vector.add(i, 0, Double.valueOf(textFields0[i][0].getText()));
+                    buff1[i][0] = Double.valueOf(vector.getList()[i][0].toString());
 
                 }
-                vector.plusAndMinus(comboBox1.getSelectedIndex(),1,  buff0, buff1, false);
+                vector.plusAndMinus(comboBox1.getSelectedIndex(), 1, buff0, buff1, false);
                 for (int i = 0; i < 7; i++) {
                     textFields0[i][0].setVisible(false);
                 }
@@ -482,31 +494,31 @@ class VectorForm extends JFrame {
                     textFields0[0][j].setVisible(false);
                 }
                 for (int i = 0; i < comboBox1.getSelectedIndex(); i++) {
-                    textFields[i][0].setText(String.valueOf(vector.getResultList()[i][0]));
+                    textFields[i][0].setText(String.valueOf(vector.getList()[i][0]));
                 }
             }
-            if (comboBox.getSelectedIndex()==3){
+            if (comboBox.getSelectedIndex() == 3) {
 
                 Double[][] buff0 = new Double[comboBox1.getSelectedIndex()][1];
                 Double[][] buff1 = new Double[comboBox1.getSelectedIndex()][1];
 
                 for (int j = 0; j < comboBox1.getSelectedIndex(); j++) {
-                    if ((textFields[j][0].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть вектор повністю!");
+                    if ((textFields[j][0].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть вектор повністю!");
                     }
-                    vector.add(j, 0, Double.valueOf(textFields[j][0].getText()), 1);
-                    buff0[j][0] = Double.valueOf(vector.getFirstList()[j][0].toString());
+                    vector.add(j, 0, Double.valueOf(textFields[j][0].getText()));
+                    buff0[j][0] = Double.valueOf(vector.getList()[j][0].toString());
                 }
 
                 for (int i = 0; i < comboBox1.getSelectedIndex(); i++) {
-                    if ((textFields0[i][0].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть вектор повністю!");
+                    if ((textFields0[i][0].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть вектор повністю!");
                     }
-                    vector.add(i, 0, Double.valueOf(textFields0[i][0].getText()), 2);
-                    buff1[i][0] = Double.valueOf(vector.getSecondList()[i][0].toString());
+                    vector.add(i, 0, Double.valueOf(textFields0[i][0].getText()));
+                    buff1[i][0] = Double.valueOf(vector.getList()[i][0].toString());
 
                 }
-                vector.multiplication(comboBox1.getSelectedIndex(),1,comboBox1.getSelectedIndex(),1,buff0,buff1);
+                vector.multiplication(comboBox1.getSelectedIndex(), 1, comboBox1.getSelectedIndex(), 1, buff0, buff1);
                 for (int i = 0; i < 7; i++) {
                     textFields0[i][0].setVisible(false);
                 }
@@ -519,39 +531,40 @@ class VectorForm extends JFrame {
                 for (int j = 0; j < 7; j++) {
                     textFields[j][0].setVisible(false);
                 }
-                    textFields[0][0].setVisible(true);
-                    textFields[0][0].setText(String.valueOf(vector.getResultList()[0][0]));
+                textFields[0][0].setVisible(true);
+                textFields[0][0].setText(String.valueOf(vector.getList()[0][0]));
             }
-            if (comboBox.getSelectedIndex()==4){
+            if (comboBox.getSelectedIndex() == 4) {
                 Double[][] buff0 = new Double[comboBox1.getSelectedIndex()][1];
 
                 for (int j = 0; j < comboBox1.getSelectedIndex(); j++) {
-                    if ((textFields[j][0].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть вектор повністю!");
+                    if ((textFields[j][0].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть вектор повністю!");
                     }
-                    vector.add(j, 0, Double.valueOf(textFields[j][0].getText()), 1);
-                    buff0[j][0] = Double.valueOf(vector.getFirstList()[j][0].toString());
+                    vector.add(j, 0, Double.valueOf(textFields[j][0].getText()));
+                    buff0[j][0] = Double.valueOf(vector.getList()[j][0].toString());
                 }
-                if ((textField27.getText().equals(""))){
-                    JOptionPane.showMessageDialog(null,"Введіть число!");
+                if ((textField27.getText().equals(""))) {
+                    JOptionPane.showMessageDialog(null, "Введіть число!");
                 }
-                vector.multiplicationByNumber(comboBox1.getSelectedIndex(),1,buff0,Double.valueOf(textField27.getText()));
+                vector.multiplicationByNumber(comboBox1.getSelectedIndex(), 1, buff0, Double.valueOf(textField27.getText()));
                 for (int i = 0; i < comboBox1.getSelectedIndex(); i++) {
-                    textFields0[i][0].setText(String.valueOf(vector.getResultList()[i][0]));
+                    textFields0[i][0].setText(String.valueOf(vector.getList()[i][0]));
                 }
-            }if(comboBox.getSelectedIndex()==5){
+            }
+            if (comboBox.getSelectedIndex() == 5) {
 
                 for (int j = 0; j < comboBox2.getSelectedIndex(); j++) {
-                    if ((textFields[j][0].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть вектор повністю!");
+                    if ((textFields[j][0].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть вектор повністю!");
                     }
-                    vector.add(j, 0, Double.valueOf(textFields[j][0].getText()), 1);
+                    vector.add(j, 0, Double.valueOf(textFields[j][0].getText()));
                 }
 
                 for (int i = 0; i < comboBox2.getSelectedIndex(); i++) {
-                    textFields0[0][i].setText(String.valueOf(vector.getResultList()[i][0]));
+                    textFields0[0][i].setText(String.valueOf(vector.getList()[i][0]));
                 }
             }
         });
     }
-    }
+}

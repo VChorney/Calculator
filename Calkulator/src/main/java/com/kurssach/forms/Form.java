@@ -1,4 +1,5 @@
 package com.kurssach.forms;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -8,13 +9,15 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 
 @EqualsAndHashCode(callSuper = true)
-public @Data class Form extends JFrame {
+public @Data
+class Form extends JFrame {
     private JButton button1 = new JButton("Матриці");
     private JButton button2 = new JButton("Вектори");
     private JButton button3 = new JButton("Множини");
-    public Form(){
+
+    public Form() {
         super("Оберіть калькулятор");
-        this.setBounds(375,275,320,75);
+        this.setBounds(375, 275, 320, 75);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         Container container = this.getContentPane();

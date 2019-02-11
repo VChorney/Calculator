@@ -1,6 +1,7 @@
 package com.kurssach.forms;
 
 import com.kurssach.description.Sets;
+
 import javax.swing.JTextField;
 import javax.swing.JFrame;
 import javax.swing.JFormattedTextField;
@@ -14,10 +15,10 @@ import java.awt.GridBagLayout;
 import java.awt.Container;
 import java.awt.BorderLayout;
 
-class SetForm extends JFrame{
+class SetForm extends JFrame {
     private String[] powers = {"", "1", "2", "3", "4", "5", "6", "7"};
     private String[] actionsForMatrix = {"", "Об'єднання", "Перетин", "Різниця", "Симетрична різниця"
-            ,"Доповнення"};
+            , "Доповнення"};
     private JComboBox<String> comboBox = new JComboBox<>(actionsForMatrix);
     private JComboBox<String> comboBox1 = new JComboBox<>(powers);
     private JComboBox<String> comboBox2 = new JComboBox<>(powers);
@@ -125,13 +126,13 @@ class SetForm extends JFrame{
 
         GridBagConstraints grid = new GridBagConstraints();
 
-        for (int i=0;i<14;i++){
+        for (int i = 0; i < 14; i++) {
             grid.weightx = 0;
             grid.weighty = 0;
             grid.gridy = 0;
             grid.gridx = i;
             grid.ipadx = 50;
-            panel8.add(textFields1[0][i],grid);
+            panel8.add(textFields1[0][i], grid);
         }
 
         GridBagConstraints gridBagLayout = new GridBagConstraints();
@@ -193,7 +194,7 @@ class SetForm extends JFrame{
         gridBagConstraints.weightx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridx = 0;
-        panel5.add(button,gridBagConstraints);
+        panel5.add(button, gridBagConstraints);
         setPowerOfMatrix();
         GridBagConstraints gridBagLayout5 = new GridBagConstraints();
         gridBagLayout5.weighty = 0;
@@ -209,72 +210,74 @@ class SetForm extends JFrame{
         gridBagLayout6.weightx = 1;
         gridBagLayout6.gridy = 0;
         gridBagLayout6.gridx = 0;
-        panel9.add(panel8,gridBagLayout6);
+        panel9.add(panel8, gridBagLayout6);
         gridBagLayout6.gridy = 1;
         gridBagLayout6.gridx = 0;
-        panel9.add(panel5,gridBagLayout6);
+        panel9.add(panel5, gridBagLayout6);
         solution();
     }
+
     private void setPowerOfMatrix() {
         for (int i = 0; i < 7; i++) {
-                textFields[0][i].setVisible(true);
-                textFields0[0][i].setVisible(true);
+            textFields[0][i].setVisible(true);
+            textFields0[0][i].setVisible(true);
         }
 
         button1.addActionListener(e -> {
-            for (int i=0;i<7;i++){
+            for (int i = 0; i < 7; i++) {
                 textFields[0][i].setVisible(false);
             }
-            for (int i=0;i<comboBox1.getSelectedIndex();i++){
+            for (int i = 0; i < comboBox1.getSelectedIndex(); i++) {
                 textFields[0][i].setVisible(true);
             }
-        for (int i=0;i<7;i++){
-            textFields0[0][i].setVisible(false);
-        }
-            for (int i=0;i<comboBox2.getSelectedIndex();i++){
-            textFields0[0][i].setVisible(true);
-        }
-            for (int i = 0; i < comboBox1.getSelectedIndex()+comboBox2.getSelectedIndex(); i++) {
+            for (int i = 0; i < 7; i++) {
+                textFields0[0][i].setVisible(false);
+            }
+            for (int i = 0; i < comboBox2.getSelectedIndex(); i++) {
+                textFields0[0][i].setVisible(true);
+            }
+            for (int i = 0; i < comboBox1.getSelectedIndex() + comboBox2.getSelectedIndex(); i++) {
                 textFields0[0][i].setText("");
                 textFields[0][i].setText("");
                 textFields1[0][i].setText("");
             }
-    });
+        });
     }
-    private void solution(){
+
+    private void solution() {
         button.addActionListener(e -> {
-            String[][] set = new String[1][comboBox1.getSelectedIndex()+comboBox2.getSelectedIndex()];
-            for (int i = 0; i < comboBox1.getSelectedIndex()+comboBox2.getSelectedIndex(); i++) {
-                    set[0][i] = "";
+            String[][] initializationSet = new String[1][comboBox1.getSelectedIndex() + comboBox2.getSelectedIndex()];
+            for (int i = 0; i < comboBox1.getSelectedIndex() + comboBox2.getSelectedIndex(); i++) {
+                initializationSet[0][i] = "";
             }
 
-            Sets sets = new Sets(set, set, set);
+            Sets sets = new Sets(initializationSet);
             if (comboBox.getSelectedIndex() == 2) {
 
                 String[][] buff0 = new String[1][comboBox1.getSelectedIndex()];
                 String[][] buff1 = new String[1][comboBox2.getSelectedIndex()];
 
                 for (int j = 0; j < comboBox1.getSelectedIndex(); j++) {
-                    if ((textFields[0][j].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть множину повністю!");
+                    if ((textFields[0][j].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть множину повністю!");
                     }
-                    sets.add(0, j, textFields[0][j].getText(), 1);
-                    buff0[0][j] = sets.getFirstList()[0][j];
+                    sets.add(0, j, textFields[0][j].getText());
+                    buff0[0][j] = sets.getList()[0][j];
                 }
 
                 for (int i = 0; i < comboBox2.getSelectedIndex(); i++) {
-                    if ((textFields0[0][i].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть множину повністю!");
+                    if ((textFields0[0][i].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть множину повністю!");
                     }
-                    sets.add(0, i, textFields0[0][i].getText(), 2);
-                    buff1[0][i] = sets.getSecondList()[0][i];
+                    sets.add(0, i, textFields0[0][i].getText());
+                    buff1[0][i] = sets.getList()[0][i];
 
                 }
-                sets.cross(comboBox1.getSelectedIndex(),comboBox2.getSelectedIndex(),buff0,buff1);
+                sets.cross(comboBox1.getSelectedIndex(), comboBox2.getSelectedIndex(), buff0, buff1);
 
-                for (int i = 0; i < comboBox1.getSelectedIndex()+comboBox2.getSelectedIndex(); i++) {
-                    textFields1[0][i].setText(sets.getResultList()[0][i]);
-                    if (textFields1[0][i].getText()==null){
+                for (int i = 0; i < comboBox1.getSelectedIndex() + comboBox2.getSelectedIndex(); i++) {
+                    textFields1[0][i].setText(sets.getList()[0][i]);
+                    if (textFields1[0][i].getText() == null) {
                         textFields1[0][i].setText("");
                     }
                 }
@@ -285,117 +288,117 @@ class SetForm extends JFrame{
                 String[][] buff1 = new String[1][comboBox2.getSelectedIndex()];
 
                 for (int j = 0; j < comboBox1.getSelectedIndex(); j++) {
-                    if ((textFields[0][j].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть множину повністю!");
+                    if ((textFields[0][j].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть множину повністю!");
                     }
-                    sets.add(0, j, textFields[0][j].getText(), 1);
-                    buff0[0][j] = sets.getFirstList()[0][j];
+                    sets.add(0, j, textFields[0][j].getText());
+                    buff0[0][j] = sets.getList()[0][j];
                 }
 
                 for (int i = 0; i < comboBox2.getSelectedIndex(); i++) {
-                    if ((textFields0[0][i].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть множину повністю!");
+                    if ((textFields0[0][i].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть множину повністю!");
                     }
-                    sets.add(0, i, textFields0[0][i].getText(), 2);
-                    buff1[0][i] = sets.getSecondList()[0][i];
+                    sets.add(0, i, textFields0[0][i].getText());
+                    buff1[0][i] = sets.getList()[0][i];
 
                 }
-                sets.merge(comboBox1.getSelectedIndex(),comboBox2.getSelectedIndex(),buff0,buff1);
+                sets.merge(comboBox1.getSelectedIndex(), comboBox2.getSelectedIndex(), buff0, buff1);
 
-                for (int i = 0; i < comboBox2.getSelectedIndex()+comboBox1.getSelectedIndex(); i++) {
-                    textFields1[0][i].setText(sets.getResultList()[0][i]);
-                    if (textFields1[0][i].getText()==null){
+                for (int i = 0; i < comboBox2.getSelectedIndex() + comboBox1.getSelectedIndex(); i++) {
+                    textFields1[0][i].setText(sets.getList()[0][i]);
+                    if (textFields1[0][i].getText() == null) {
                         textFields1[0][i].setText("");
                     }
                 }
             }
-            if (comboBox.getSelectedIndex()==3){
+            if (comboBox.getSelectedIndex() == 3) {
 
                 String[][] buff0 = new String[1][comboBox1.getSelectedIndex()];
                 String[][] buff1 = new String[1][comboBox2.getSelectedIndex()];
 
                 for (int j = 0; j < comboBox1.getSelectedIndex(); j++) {
-                    if ((textFields[0][j].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть множину повністю!");
+                    if ((textFields[0][j].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть множину повністю!");
                     }
-                    sets.add(0, j, textFields[0][j].getText(), 1);
-                    buff0[0][j] = sets.getFirstList()[0][j];
+                    sets.add(0, j, textFields[0][j].getText());
+                    buff0[0][j] = sets.getList()[0][j];
                 }
 
                 for (int i = 0; i < comboBox2.getSelectedIndex(); i++) {
-                    if ((textFields0[0][i].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть множину повністю!");
+                    if ((textFields0[0][i].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть множину повністю!");
                     }
-                    sets.add(0, i, textFields0[0][i].getText(), 2);
-                    buff1[0][i] = sets.getSecondList()[0][i];
+                    sets.add(0, i, textFields0[0][i].getText());
+                    buff1[0][i] = sets.getList()[0][i];
 
                 }
-                int k=sets.difference(comboBox1.getSelectedIndex(),comboBox2.getSelectedIndex(),buff0,buff1);
+                int k = sets.difference(comboBox1.getSelectedIndex(), comboBox2.getSelectedIndex(), buff0, buff1);
 
                 for (int i = 0; i < k; i++) {
-                    textFields1[0][i].setText(sets.getResultList()[0][i]);
-                    if (textFields1[0][i].getText()==null){
+                    textFields1[0][i].setText(sets.getList()[0][i]);
+                    if (textFields1[0][i].getText() == null) {
                         textFields1[0][i].setText("");
                     }
                 }
             }
 
-            if (comboBox.getSelectedIndex()==4){
+            if (comboBox.getSelectedIndex() == 4) {
 
                 String[][] buff0 = new String[1][comboBox1.getSelectedIndex()];
                 String[][] buff1 = new String[1][comboBox2.getSelectedIndex()];
 
                 for (int j = 0; j < comboBox1.getSelectedIndex(); j++) {
-                    if ((textFields[0][j].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть множину повністю!");
+                    if ((textFields[0][j].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть множину повністю!");
                     }
-                    sets.add(0, j, textFields[0][j].getText(), 1);
-                    buff0[0][j] = sets.getFirstList()[0][j];
+                    sets.add(0, j, textFields[0][j].getText());
+                    buff0[0][j] = sets.getList()[0][j];
                 }
 
                 for (int i = 0; i < comboBox2.getSelectedIndex(); i++) {
-                    if ((textFields0[0][i].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть множину повністю!");
+                    if ((textFields0[0][i].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть множину повністю!");
                     }
-                    sets.add(0, i, textFields0[0][i].getText(), 2);
-                    buff1[0][i] = sets.getSecondList()[0][i];
+                    sets.add(0, i, textFields0[0][i].getText());
+                    buff1[0][i] = sets.getList()[0][i];
 
                 }
-                int k=sets.differentDifference(comboBox1.getSelectedIndex(),comboBox2.getSelectedIndex(),buff0,buff1);
+                int k = sets.differentDifference(comboBox1.getSelectedIndex(), comboBox2.getSelectedIndex(), buff0, buff1);
 
                 for (int i = 0; i < k; i++) {
-                    textFields1[0][i].setText(sets.getResultList()[0][i]);
-                    if (textFields1[0][i].getText()==null){
+                    textFields1[0][i].setText(sets.getList()[0][i]);
+                    if (textFields1[0][i].getText() == null) {
                         textFields1[0][i].setText("");
                     }
                 }
             }
-            if(comboBox.getSelectedIndex()==5){
+            if (comboBox.getSelectedIndex() == 5) {
 
                 String[][] buff0 = new String[1][comboBox1.getSelectedIndex()];
                 String[][] buff1 = new String[1][comboBox2.getSelectedIndex()];
 
                 for (int j = 0; j < comboBox1.getSelectedIndex(); j++) {
-                    if ((textFields[0][j].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть множину повністю!");
+                    if ((textFields[0][j].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть множину повністю!");
                     }
-                    sets.add(0, j, textFields[0][j].getText(), 1);
-                    buff0[0][j] = sets.getFirstList()[0][j];
+                    sets.add(0, j, textFields[0][j].getText());
+                    buff0[0][j] = sets.getList()[0][j];
                 }
 
                 for (int i = 0; i < comboBox2.getSelectedIndex(); i++) {
-                    if ((textFields0[0][i].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть множину повністю!");
+                    if ((textFields0[0][i].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть множину повністю!");
                     }
-                    sets.add(0, i, textFields0[0][i].getText(), 2);
-                    buff1[0][i] = sets.getSecondList()[0][i];
+                    sets.add(0, i, textFields0[0][i].getText());
+                    buff1[0][i] = sets.getList()[0][i];
 
                 }
-                sets.addition(comboBox1.getSelectedIndex(),comboBox2.getSelectedIndex(),buff0,buff1);
+                sets.addition(comboBox1.getSelectedIndex(), comboBox2.getSelectedIndex(), buff0, buff1);
 
-                for (int i = 0; i < comboBox1.getSelectedIndex()+comboBox2.getSelectedIndex(); i++) {
-                    textFields1[0][i].setText(sets.getResultList()[0][i]);
-                    if (textFields1[0][i].getText()==null){
+                for (int i = 0; i < comboBox1.getSelectedIndex() + comboBox2.getSelectedIndex(); i++) {
+                    textFields1[0][i].setText(sets.getList()[0][i]);
+                    if (textFields1[0][i].getText() == null) {
                         textFields1[0][i].setText("");
                     }
                 }

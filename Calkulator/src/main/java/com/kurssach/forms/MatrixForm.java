@@ -1,6 +1,7 @@
 package com.kurssach.forms;
 
-import  com.kurssach.description.Matrix;
+import com.kurssach.description.Matrix;
+
 import javax.swing.JTextField;
 import javax.swing.JFrame;
 import javax.swing.JFormattedTextField;
@@ -41,6 +42,7 @@ class MatrixForm extends JFrame {
     private JButton button1 = new JButton("Встановити");
     private JTextField[][] textFields = new JTextField[7][7];
     private JTextField[][] textFields0 = new JTextField[7][7];
+
     MatrixForm() {
         this.setBounds(100, 85, 825, 475);
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -286,15 +288,18 @@ class MatrixForm extends JFrame {
                 textFields[i][j].addKeyListener(new KeyAdapter() {
                     @Override
                     public void keyTyped(KeyEvent e) {
-                        char c = e.getKeyChar(); if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)&&(c!='.'))
-                        { e.consume(); }
+                        char c = e.getKeyChar();
+                        if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != '.')) {
+                            e.consume();
+                        }
                     }
                 });
                 textFields0[i][j].addKeyListener(new KeyAdapter() {
                     @Override
                     public void keyTyped(KeyEvent e) {
-                        char c = e.getKeyChar(); if ( ((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE)&&(c!='.'))
-                        { e.consume();
+                        char c = e.getKeyChar();
+                        if (((c < '0') || (c > '9')) && (c != KeyEvent.VK_BACK_SPACE) && (c != '.')) {
+                            e.consume();
                         }
                     }
                 });
@@ -371,7 +376,7 @@ class MatrixForm extends JFrame {
         gridBagConstraints.weightx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridx = 0;
-        panel5.add(button,gridBagConstraints);
+        panel5.add(button, gridBagConstraints);
         comboBox1.setVisible(false);
         comboBox4.setVisible(false);
         comboBox5.setVisible(false);
@@ -395,11 +400,12 @@ class MatrixForm extends JFrame {
         panel7.add(panel6, gridBagLayout5);
         solution();
     }
+
     private void check() {
         comboBox.addActionListener(e -> {
             setPowerOfMatrix();
-            for (int i=0;i<7;i++){
-                for (int j=0;j<7;j++){
+            for (int i = 0; i < 7; i++) {
+                for (int j = 0; j < 7; j++) {
                     textFields[i][j].setText("");
                     textFields0[i][j].setText("");
                 }
@@ -417,7 +423,8 @@ class MatrixForm extends JFrame {
                 comboBox8.setVisible(false);
                 comboBox9.setVisible(false);
                 comboBox10.setVisible(false);
-                label5.setVisible(false); }
+                label5.setVisible(false);
+            }
             if ((comboBox.getSelectedIndex() == 6)) {
                 comboBox3.setVisible(false);
                 comboBox2.setVisible(false);
@@ -431,7 +438,8 @@ class MatrixForm extends JFrame {
                 comboBox8.setVisible(false);
                 comboBox9.setVisible(false);
                 comboBox10.setVisible(false);
-                label5.setVisible(false); }
+                label5.setVisible(false);
+            }
             if ((comboBox.getSelectedIndex() == 4)) {
                 comboBox3.setVisible(false);
                 comboBox2.setVisible(false);
@@ -445,7 +453,8 @@ class MatrixForm extends JFrame {
                 comboBox8.setVisible(false);
                 comboBox9.setVisible(false);
                 comboBox10.setVisible(false);
-                label5.setVisible(false); }
+                label5.setVisible(false);
+            }
             if ((comboBox.getSelectedIndex() == 3)) {
                 comboBox3.setVisible(false);
                 comboBox2.setVisible(false);
@@ -459,8 +468,9 @@ class MatrixForm extends JFrame {
                 comboBox8.setVisible(true);
                 comboBox9.setVisible(true);
                 comboBox10.setVisible(false);
-                label5.setVisible(false); }
-            if ((comboBox.getSelectedIndex() > 6)&&(comboBox.getSelectedIndex()<9)) {
+                label5.setVisible(false);
+            }
+            if ((comboBox.getSelectedIndex() > 6) && (comboBox.getSelectedIndex() < 9)) {
                 comboBox3.setVisible(false);
                 comboBox2.setVisible(false);
                 label3.setVisible(false);
@@ -473,7 +483,8 @@ class MatrixForm extends JFrame {
                 comboBox8.setVisible(false);
                 comboBox9.setVisible(false);
                 comboBox10.setVisible(false);
-                label5.setVisible(false); }
+                label5.setVisible(false);
+            }
             if ((comboBox.getSelectedIndex() == 5)) {
                 comboBox3.setVisible(false);
                 comboBox6.setVisible(false);
@@ -487,8 +498,9 @@ class MatrixForm extends JFrame {
                 comboBox5.setVisible(false);
                 label4.setVisible(false);
                 comboBox10.setVisible(false);
-                label5.setVisible(false); }
-            if ((comboBox.getSelectedIndex() ==9)) {
+                label5.setVisible(false);
+            }
+            if ((comboBox.getSelectedIndex() == 9)) {
                 comboBox3.setVisible(false);
                 comboBox2.setVisible(false);
                 label3.setVisible(false);
@@ -505,6 +517,7 @@ class MatrixForm extends JFrame {
             }
         });
     }
+
     private void setPowerOfMatrix() {
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 7; j++) {
@@ -512,269 +525,236 @@ class MatrixForm extends JFrame {
                 textFields0[i][j].setVisible(true);
             }
         }
-            button1.addActionListener(e -> {
-                if ((comboBox.getSelectedIndex() == 3)) {
-                    for (int i = 0; i < comboBox6.getSelectedIndex(); i++) {
-                        for (int j = 0; j < comboBox7.getSelectedIndex(); j++) {
-                            textFields[i][j].setVisible(true);
-                            if (textFields[i][j].getText().equals("")){
-                                JOptionPane.showMessageDialog(null,"Заповніть матрцю повністю!");
-                            }
-                        }
-                    }
-                    for (int i = 6; i > -1; i--) {
-                        for (int j = 6; j > comboBox7.getSelectedIndex()-1; j--) {
-                            textFields[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 6; i > comboBox6.getSelectedIndex()-1; i--) {
-                        for (int j = 6; j > -1; j--) {
-                            textFields[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 0; i < comboBox8.getSelectedIndex(); i++) {
-                        for (int j = 0; j < comboBox9.getSelectedIndex(); j++) {
-                            textFields0[i][j].setVisible(true);
-                            if (textFields[i][j].getText().equals("")){
-                                JOptionPane.showMessageDialog(null,"Заповніть матрцю повністю!");
-                            }
-                        }
-                    }
-                    for (int i = 6; i > -1; i--) {
-                        for (int j = 6; j > comboBox9.getSelectedIndex()-1; j--) {
-                            textFields0[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 6; i > comboBox8.getSelectedIndex()-1; i--) {
-                        for (int j = 6; j > -1; j--) {
-                            textFields0[i][j].setVisible(false);
+        button1.addActionListener(e -> {
+            if ((comboBox.getSelectedIndex() == 3)) {
+                for (int i = 0; i < comboBox6.getSelectedIndex(); i++) {
+                    for (int j = 0; j < comboBox7.getSelectedIndex(); j++) {
+                        textFields[i][j].setVisible(true);
+                        if (textFields[i][j].getText().equals("")) {
+                            JOptionPane.showMessageDialog(null, "Заповніть матрцю повністю!");
                         }
                     }
                 }
-                if ((comboBox.getSelectedIndex() == 4)) {
-                    for (int i = 0; i < comboBox6.getSelectedIndex(); i++) {
-                        for (int j = 0; j < comboBox7.getSelectedIndex(); j++) {
-                            if (textFields[i][j].getText().equals("")){
-                                JOptionPane.showMessageDialog(null,"Заповніть матрцю повністю!");
-                            }
-                            textFields[i][j].setVisible(true);
-                        }
+                for (int i = 6; i > -1; i--) {
+                    for (int j = 6; j > comboBox7.getSelectedIndex() - 1; j--) {
+                        textFields[i][j].setVisible(false);
                     }
-                    for (int i = 6; i > -1; i--) {
-                        for (int j = 6; j > comboBox7.getSelectedIndex()-1; j--) {
-                            textFields[i][j].setVisible(false);
-                        }
+                }
+                for (int i = 6; i > comboBox6.getSelectedIndex() - 1; i--) {
+                    for (int j = 6; j > -1; j--) {
+                        textFields[i][j].setVisible(false);
                     }
-                    for (int i = 6; i > comboBox6.getSelectedIndex()-1; i--) {
-                        for (int j = 6; j > -1; j--) {
-                            textFields[i][j].setVisible(false);
-                        }
-                    }
-                            textFields0[0][0].setVisible(true);
-                    for (int i = 6; i > -1; i--) {
-                        for (int j = 6; j > 0; j--) {
-                            textFields0[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 6; i > 0; i--) {
-                        for (int j = 6; j > -1; j--) {
-                            textFields0[i][j].setVisible(false);
+                }
+                for (int i = 0; i < comboBox8.getSelectedIndex(); i++) {
+                    for (int j = 0; j < comboBox9.getSelectedIndex(); j++) {
+                        textFields0[i][j].setVisible(true);
+                        if (textFields[i][j].getText().equals("")) {
+                            JOptionPane.showMessageDialog(null, "Заповніть матрцю повністю!");
                         }
                     }
                 }
-                if ((comboBox.getSelectedIndex() == 5)) {
-                    for (int i = 0; i < comboBox1.getSelectedIndex()+1; i++) {
-                        for (int j = 0; j < comboBox1.getSelectedIndex()+1; j++) {
-                            textFields[i][j].setVisible(true);
-                        }
-                    }
-                    for (int i = 6; i > -1; i--) {
-                        for (int j = 6; j > comboBox1.getSelectedIndex(); j--) {
-                            textFields[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 6; i > comboBox1.getSelectedIndex(); i--) {
-                        for (int j = 6; j > -1; j--) {
-                            textFields[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 0; i < comboBox1.getSelectedIndex()+1; i++) {
-                            textFields0[i][0].setVisible(true);
-                     }
-                    for (int i = 6; i > -1; i--) {
-                        for (int j = 6; j > 0; j--) {
-                            textFields0[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 6; i > comboBox1.getSelectedIndex(); i--) {
-                        for (int j = 6; j > -1; j--) {
-                            textFields0[i][j].setVisible(false);
-                        }
+                for (int i = 6; i > -1; i--) {
+                    for (int j = 6; j > comboBox9.getSelectedIndex() - 1; j--) {
+                        textFields0[i][j].setVisible(false);
                     }
                 }
-                if ((comboBox.getSelectedIndex() == 6)) {
-                    for (int i = 0; i < comboBox6.getSelectedIndex(); i++) {
-                        for (int j = 0; j < comboBox7.getSelectedIndex(); j++) {
-                            textFields[i][j].setVisible(true);
-                        }
+                for (int i = 6; i > comboBox8.getSelectedIndex() - 1; i--) {
+                    for (int j = 6; j > -1; j--) {
+                        textFields0[i][j].setVisible(false);
                     }
-                    for (int i = 6; i > -1; i--) {
-                        for (int j = 6; j > comboBox7.getSelectedIndex()-1; j--) {
-                            textFields[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 6; i > comboBox6.getSelectedIndex()-1; i--) {
-                        for (int j = 6; j > -1; j--) {
-                            textFields[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 0; i < comboBox6.getSelectedIndex(); i++) {
-                        for (int j = 0; j < comboBox7.getSelectedIndex(); j++) {
-                            textFields0[i][j].setVisible(true);
-                        }
-                    }
-                    for (int i = 6; i > -1; i--) {
-                        for (int j = 6; j > comboBox7.getSelectedIndex()-1; j--) {
-                            textFields0[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 6; i > comboBox6.getSelectedIndex()-1; i--) {
-                        for (int j = 6; j > -1; j--) {
-                            textFields0[i][j].setVisible(false);
-                        }
-                    }
-                }
-                if (comboBox.getSelectedIndex() > 6) {
-                    for (int i = 0; i < comboBox1.getSelectedIndex() + 1; i++) {
-                        for (int j = 0; j < comboBox1.getSelectedIndex() + 1; j++) {
-                            textFields[i][j].setVisible(true);
-                        }
-                    }
-                    for (int i = 6; i > -1; i--) {
-                        for (int j = 6; j > comboBox1.getSelectedIndex(); j--) {
-                            textFields[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 6; i > comboBox1.getSelectedIndex(); i--) {
-                        for (int j = 6; j > -1; j--) {
-                            textFields[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 0; i < comboBox1.getSelectedIndex() + 1; i++) {
-                        for (int j = 0; j < comboBox1.getSelectedIndex() + 1; j++) {
-                            textFields0[i][j].setVisible(true);
-                        }
-                    }
-                    for (int i = 6; i > -1; i--) {
-                        for (int j = 6; j > comboBox1.getSelectedIndex(); j--) {
-                            textFields0[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 6; i > comboBox1.getSelectedIndex(); i--) {
-                        for (int j = 6; j > -1; j--) {
-                            textFields0[i][j].setVisible(false);
-                        }
-                    }
-                }
-                if ((comboBox.getSelectedIndex() == 1) || (comboBox.getSelectedIndex() == 2)) {
-                    for (int i = 0; i < comboBox2.getSelectedIndex() + 1; i++) {
-                        for (int j = 0; j < comboBox3.getSelectedIndex() + 1; j++) {
-                            textFields[i][j].setVisible(true);
-                        }
-                    }
-                    for (int i = 6; i > -1; i--) {
-                        for (int j = 6; j > comboBox3.getSelectedIndex(); j--) {
-                            textFields[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 6; i > comboBox2.getSelectedIndex(); i--) {
-                        for (int j = 6; j > -1; j--) {
-                            textFields[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 0; i < comboBox2.getSelectedIndex() + 1; i++) {
-                        for (int j = 0; j < comboBox3.getSelectedIndex() + 1; j++) {
-                            textFields0[i][j].setVisible(true);
-                        }
-                    }
-                    for (int i = 6; i > -1; i--) {
-                        for (int j = 6; j > comboBox3.getSelectedIndex(); j--) {
-                            textFields0[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 6; i > comboBox2.getSelectedIndex(); i--) {
-                        for (int j = 6; j > -1; j--) {
-                            textFields0[i][j].setVisible(false);
-                        }
-                    }
-                }
-            });
-     }
-    private void solution(){
-        button.addActionListener(e -> {
-            Double[][] matriX = new Double[7][7];
-            for (int i = 0; i < 7; i++) {
-                for (int j = 0; j < 7; j++) {
-                    matriX[i][j] = 0.0;
                 }
             }
-                Matrix matrix = new Matrix(matriX, matriX, matriX);
-                if (comboBox.getSelectedIndex() == 1) {
-                    Double[][] buff0 = new Double[comboBox2.getSelectedIndex()+1][comboBox3.getSelectedIndex()+1];
-                    Double[][] buff1 = new Double[comboBox2.getSelectedIndex()+1][comboBox3.getSelectedIndex()+1];
-                    for (int i = 0; i < comboBox2.getSelectedIndex() + 1; i++) {
-                        for (int j = 0; j < comboBox3.getSelectedIndex()+1; j++) {
-                            if ((textFields[i][j].getText().equals(""))){
-                                JOptionPane.showMessageDialog(null,"Заповніть матрцю повністю!");
-                            }
-                            matrix.add(i, j, Double.valueOf(textFields[i][j].getText()), 1);
-                            buff0[i][j] = Double.valueOf(matrix.getSecondList()[i][j].toString());
+            if ((comboBox.getSelectedIndex() == 4)) {
+                for (int i = 0; i < comboBox6.getSelectedIndex(); i++) {
+                    for (int j = 0; j < comboBox7.getSelectedIndex(); j++) {
+                        if (textFields[i][j].getText().equals("")) {
+                            JOptionPane.showMessageDialog(null, "Заповніть матрцю повністю!");
                         }
-                    }
-                    for (int i = 0; i < comboBox2.getSelectedIndex() + 1; i++) {
-                        for (int j = 0; j < comboBox3.getSelectedIndex()+1; j++) {
-                            if ((textFields0[i][j].getText().equals(""))){
-                                JOptionPane.showMessageDialog(null,"Заповніть матрцю повністю!");
-                            }
-                            matrix.add(i, j, Double.valueOf(textFields0[i][j].getText()), 2);
-                            buff1[i][j] = Double.valueOf(matrix.getSecondList()[i][j].toString());
-                        }
-                    }
-                    matrix.plusAndMinus(comboBox2.getSelectedIndex()+1,comboBox3.getSelectedIndex()+1, buff0, buff1, true);
-                    for (int i = 0; i < 7; i++) {
-                        for (int j = 0; j < 7; j++) {
-                            textFields0[i][j].setVisible(false);
-                        }
-                    }
-                    for (int i = 0; i < comboBox2.getSelectedIndex() + 1; i++) {
-                        for (int j = 0; j < comboBox3.getSelectedIndex() + 1; j++) {
-                            textFields[i][j].setText(String.valueOf(matrix.getResultList()[i][j]));
-                        }
+                        textFields[i][j].setVisible(true);
                     }
                 }
-            if (comboBox.getSelectedIndex() == 2) {
+                for (int i = 6; i > -1; i--) {
+                    for (int j = 6; j > comboBox7.getSelectedIndex() - 1; j--) {
+                        textFields[i][j].setVisible(false);
+                    }
+                }
+                for (int i = 6; i > comboBox6.getSelectedIndex() - 1; i--) {
+                    for (int j = 6; j > -1; j--) {
+                        textFields[i][j].setVisible(false);
+                    }
+                }
+                textFields0[0][0].setVisible(true);
+                for (int i = 6; i > -1; i--) {
+                    for (int j = 6; j > 0; j--) {
+                        textFields0[i][j].setVisible(false);
+                    }
+                }
+                for (int i = 6; i > 0; i--) {
+                    for (int j = 6; j > -1; j--) {
+                        textFields0[i][j].setVisible(false);
+                    }
+                }
+            }
+            if ((comboBox.getSelectedIndex() == 5)) {
+                for (int i = 0; i < comboBox1.getSelectedIndex() + 1; i++) {
+                    for (int j = 0; j < comboBox1.getSelectedIndex() + 1; j++) {
+                        textFields[i][j].setVisible(true);
+                    }
+                }
+                for (int i = 6; i > -1; i--) {
+                    for (int j = 6; j > comboBox1.getSelectedIndex(); j--) {
+                        textFields[i][j].setVisible(false);
+                    }
+                }
+                for (int i = 6; i > comboBox1.getSelectedIndex(); i--) {
+                    for (int j = 6; j > -1; j--) {
+                        textFields[i][j].setVisible(false);
+                    }
+                }
+                for (int i = 0; i < comboBox1.getSelectedIndex() + 1; i++) {
+                    textFields0[i][0].setVisible(true);
+                }
+                for (int i = 6; i > -1; i--) {
+                    for (int j = 6; j > 0; j--) {
+                        textFields0[i][j].setVisible(false);
+                    }
+                }
+                for (int i = 6; i > comboBox1.getSelectedIndex(); i--) {
+                    for (int j = 6; j > -1; j--) {
+                        textFields0[i][j].setVisible(false);
+                    }
+                }
+            }
+            if ((comboBox.getSelectedIndex() == 6)) {
+                for (int i = 0; i < comboBox6.getSelectedIndex(); i++) {
+                    for (int j = 0; j < comboBox7.getSelectedIndex(); j++) {
+                        textFields[i][j].setVisible(true);
+                    }
+                }
+                for (int i = 6; i > -1; i--) {
+                    for (int j = 6; j > comboBox7.getSelectedIndex() - 1; j--) {
+                        textFields[i][j].setVisible(false);
+                    }
+                }
+                for (int i = 6; i > comboBox6.getSelectedIndex() - 1; i--) {
+                    for (int j = 6; j > -1; j--) {
+                        textFields[i][j].setVisible(false);
+                    }
+                }
+                for (int i = 0; i < comboBox6.getSelectedIndex(); i++) {
+                    for (int j = 0; j < comboBox7.getSelectedIndex(); j++) {
+                        textFields0[i][j].setVisible(true);
+                    }
+                }
+                for (int i = 6; i > -1; i--) {
+                    for (int j = 6; j > comboBox7.getSelectedIndex() - 1; j--) {
+                        textFields0[i][j].setVisible(false);
+                    }
+                }
+                for (int i = 6; i > comboBox6.getSelectedIndex() - 1; i--) {
+                    for (int j = 6; j > -1; j--) {
+                        textFields0[i][j].setVisible(false);
+                    }
+                }
+            }
+            if (comboBox.getSelectedIndex() > 6) {
+                for (int i = 0; i < comboBox1.getSelectedIndex() + 1; i++) {
+                    for (int j = 0; j < comboBox1.getSelectedIndex() + 1; j++) {
+                        textFields[i][j].setVisible(true);
+                    }
+                }
+                for (int i = 6; i > -1; i--) {
+                    for (int j = 6; j > comboBox1.getSelectedIndex(); j--) {
+                        textFields[i][j].setVisible(false);
+                    }
+                }
+                for (int i = 6; i > comboBox1.getSelectedIndex(); i--) {
+                    for (int j = 6; j > -1; j--) {
+                        textFields[i][j].setVisible(false);
+                    }
+                }
+                for (int i = 0; i < comboBox1.getSelectedIndex() + 1; i++) {
+                    for (int j = 0; j < comboBox1.getSelectedIndex() + 1; j++) {
+                        textFields0[i][j].setVisible(true);
+                    }
+                }
+                for (int i = 6; i > -1; i--) {
+                    for (int j = 6; j > comboBox1.getSelectedIndex(); j--) {
+                        textFields0[i][j].setVisible(false);
+                    }
+                }
+                for (int i = 6; i > comboBox1.getSelectedIndex(); i--) {
+                    for (int j = 6; j > -1; j--) {
+                        textFields0[i][j].setVisible(false);
+                    }
+                }
+            }
+            if ((comboBox.getSelectedIndex() == 1) || (comboBox.getSelectedIndex() == 2)) {
+                for (int i = 0; i < comboBox2.getSelectedIndex() + 1; i++) {
+                    for (int j = 0; j < comboBox3.getSelectedIndex() + 1; j++) {
+                        textFields[i][j].setVisible(true);
+                    }
+                }
+                for (int i = 6; i > -1; i--) {
+                    for (int j = 6; j > comboBox3.getSelectedIndex(); j--) {
+                        textFields[i][j].setVisible(false);
+                    }
+                }
+                for (int i = 6; i > comboBox2.getSelectedIndex(); i--) {
+                    for (int j = 6; j > -1; j--) {
+                        textFields[i][j].setVisible(false);
+                    }
+                }
+                for (int i = 0; i < comboBox2.getSelectedIndex() + 1; i++) {
+                    for (int j = 0; j < comboBox3.getSelectedIndex() + 1; j++) {
+                        textFields0[i][j].setVisible(true);
+                    }
+                }
+                for (int i = 6; i > -1; i--) {
+                    for (int j = 6; j > comboBox3.getSelectedIndex(); j--) {
+                        textFields0[i][j].setVisible(false);
+                    }
+                }
+                for (int i = 6; i > comboBox2.getSelectedIndex(); i--) {
+                    for (int j = 6; j > -1; j--) {
+                        textFields0[i][j].setVisible(false);
+                    }
+                }
+            }
+        });
+    }
 
-                Double[][] buff0 = new Double[comboBox2.getSelectedIndex()+1][comboBox3.getSelectedIndex()+1];
-                Double[][] buff1 = new Double[comboBox2.getSelectedIndex()+1][comboBox3.getSelectedIndex()+1];
+    private void solution() {
+        button.addActionListener(e -> {
+            Double[][] initializationMatrix = new Double[7][7];
+            for (int i = 0; i < 7; i++) {
+                for (int j = 0; j < 7; j++) {
+                    initializationMatrix[i][j] = 0.0;
+                }
+            }
+            Matrix matrix = new Matrix(initializationMatrix);
+            if (comboBox.getSelectedIndex() == 1) {
+                Double[][] buff0 = new Double[comboBox2.getSelectedIndex() + 1][comboBox3.getSelectedIndex() + 1];
+                Double[][] buff1 = new Double[comboBox2.getSelectedIndex() + 1][comboBox3.getSelectedIndex() + 1];
                 for (int i = 0; i < comboBox2.getSelectedIndex() + 1; i++) {
-                    for (int j = 0; j < comboBox3.getSelectedIndex()+1; j++) {
-                        if ((textFields[i][j].getText().equals(""))){
-                            JOptionPane.showMessageDialog(null,"Заповніть матрцю повністю!");
+                    for (int j = 0; j < comboBox3.getSelectedIndex() + 1; j++) {
+                        if ((textFields[i][j].getText().equals(""))) {
+                            JOptionPane.showMessageDialog(null, "Заповніть матрцю повністю!");
                         }
-                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()), 1);
-                        buff0[i][j] = Double.valueOf(matrix.getFirstList()[i][j].toString());
+                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()));
+                        buff0[i][j] = Double.valueOf(matrix.getList()[i][j].toString());
                     }
                 }
                 for (int i = 0; i < comboBox2.getSelectedIndex() + 1; i++) {
-                    for (int j = 0; j < comboBox3.getSelectedIndex()+1; j++) {
-                        if ((textFields0[i][j].getText().equals(""))){
-                            JOptionPane.showMessageDialog(null,"Заповніть матрцю повністю!");
+                    for (int j = 0; j < comboBox3.getSelectedIndex() + 1; j++) {
+                        if ((textFields0[i][j].getText().equals(""))) {
+                            JOptionPane.showMessageDialog(null, "Заповніть матрцю повністю!");
                         }
-                        matrix.add(i, j, Double.valueOf(textFields0[i][j].getText()), 2);
-                        buff1[i][j] = Double.valueOf(matrix.getSecondList()[i][j].toString());
+                        matrix.add(i, j, Double.valueOf(textFields0[i][j].getText()));
+                        buff1[i][j] = Double.valueOf(matrix.getList()[i][j].toString());
                     }
                 }
-                matrix.plusAndMinus(comboBox3.getSelectedIndex()+1, comboBox2.getSelectedIndex()+1, buff0, buff1, false);
+                matrix.plusAndMinus(comboBox2.getSelectedIndex() + 1, comboBox3.getSelectedIndex() + 1, buff0, buff1, true);
                 for (int i = 0; i < 7; i++) {
                     for (int j = 0; j < 7; j++) {
                         textFields0[i][j].setVisible(false);
@@ -782,36 +762,70 @@ class MatrixForm extends JFrame {
                 }
                 for (int i = 0; i < comboBox2.getSelectedIndex() + 1; i++) {
                     for (int j = 0; j < comboBox3.getSelectedIndex() + 1; j++) {
-                        textFields[i][j].setText(String.valueOf(matrix.getResultList()[i][j]));
+                        textFields[i][j].setText(String.valueOf(matrix.getList()[i][j]));
                     }
                 }
             }
-            if (comboBox.getSelectedIndex()==3){
-                if (comboBox7.getSelectedIndex()!=comboBox8.getSelectedIndex()){
-                    JOptionPane.showMessageDialog(null,"Кількість стовпців поршої матриці повинен дорівнювати кількості рядків другої! ");
+            if (comboBox.getSelectedIndex() == 2) {
+
+                Double[][] buff0 = new Double[comboBox2.getSelectedIndex() + 1][comboBox3.getSelectedIndex() + 1];
+                Double[][] buff1 = new Double[comboBox2.getSelectedIndex() + 1][comboBox3.getSelectedIndex() + 1];
+                for (int i = 0; i < comboBox2.getSelectedIndex() + 1; i++) {
+                    for (int j = 0; j < comboBox3.getSelectedIndex() + 1; j++) {
+                        if ((textFields[i][j].getText().equals(""))) {
+                            JOptionPane.showMessageDialog(null, "Заповніть матрцю повністю!");
+                        }
+                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()));
+                        buff0[i][j] = Double.valueOf(matrix.getList()[i][j].toString());
+                    }
+                }
+                for (int i = 0; i < comboBox2.getSelectedIndex() + 1; i++) {
+                    for (int j = 0; j < comboBox3.getSelectedIndex() + 1; j++) {
+                        if ((textFields0[i][j].getText().equals(""))) {
+                            JOptionPane.showMessageDialog(null, "Заповніть матрцю повністю!");
+                        }
+                        matrix.add(i, j, Double.valueOf(textFields0[i][j].getText()));
+                        buff1[i][j] = Double.valueOf(matrix.getList()[i][j].toString());
+                    }
+                }
+                matrix.plusAndMinus(comboBox3.getSelectedIndex() + 1, comboBox2.getSelectedIndex() + 1, buff0, buff1, false);
+                for (int i = 0; i < 7; i++) {
+                    for (int j = 0; j < 7; j++) {
+                        textFields0[i][j].setVisible(false);
+                    }
+                }
+                for (int i = 0; i < comboBox2.getSelectedIndex() + 1; i++) {
+                    for (int j = 0; j < comboBox3.getSelectedIndex() + 1; j++) {
+                        textFields[i][j].setText(String.valueOf(matrix.getList()[i][j]));
+                    }
+                }
+            }
+            if (comboBox.getSelectedIndex() == 3) {
+                if (comboBox7.getSelectedIndex() != comboBox8.getSelectedIndex()) {
+                    JOptionPane.showMessageDialog(null, "Кількість стовпців поршої матриці повинен дорівнювати кількості рядків другої! ");
                 }
 
                 Double[][] buff0 = new Double[comboBox6.getSelectedIndex()][comboBox7.getSelectedIndex()];
                 Double[][] buff1 = new Double[comboBox9.getSelectedIndex()][comboBox9.getSelectedIndex()];
                 for (int i = 0; i < comboBox6.getSelectedIndex(); i++) {
                     for (int j = 0; j < comboBox7.getSelectedIndex(); j++) {
-                        if ((textFields[i][j].getText().equals(""))){
-                            JOptionPane.showMessageDialog(null,"Заповніть матрцю повністю!");
+                        if ((textFields[i][j].getText().equals(""))) {
+                            JOptionPane.showMessageDialog(null, "Заповніть матрцю повністю!");
                         }
-                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()), 1);
-                        buff0[i][j] = Double.valueOf(matrix.getFirstList()[i][j].toString());
+                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()));
+                        buff0[i][j] = Double.valueOf(matrix.getList()[i][j].toString());
                     }
                 }
                 for (int i = 0; i < comboBox8.getSelectedIndex(); i++) {
                     for (int j = 0; j < comboBox9.getSelectedIndex(); j++) {
-                        if ((textFields0[i][j].getText().equals(""))){
-                            JOptionPane.showMessageDialog(null,"Заповніть матрцю повністю!");
+                        if ((textFields0[i][j].getText().equals(""))) {
+                            JOptionPane.showMessageDialog(null, "Заповніть матрцю повністю!");
                         }
-                        matrix.add(i, j, Double.valueOf(textFields0[i][j].getText()), 2);
-                        buff1[i][j] = Double.valueOf(matrix.getSecondList()[i][j].toString());
+                        matrix.add(i, j, Double.valueOf(textFields0[i][j].getText()));
+                        buff1[i][j] = Double.valueOf(matrix.getList()[i][j].toString());
                     }
                 }
-                matrix.multiplication(comboBox6.getSelectedIndex(),comboBox7.getSelectedIndex(),comboBox8.getSelectedIndex(),comboBox9.getSelectedIndex(),buff0,buff1);
+                matrix.multiplication(comboBox6.getSelectedIndex(), comboBox7.getSelectedIndex(), comboBox8.getSelectedIndex(), comboBox9.getSelectedIndex(), buff0, buff1);
                 for (int i = 0; i < 7; i++) {
                     for (int j = 0; j < 7; j++) {
                         textFields0[i][j].setVisible(false);
@@ -819,7 +833,7 @@ class MatrixForm extends JFrame {
                 }
                 for (int i = 0; i < comboBox6.getSelectedIndex(); i++) {
                     for (int j = 0; j < comboBox9.getSelectedIndex(); j++) {
-                        textFields[i][j].setText(String.valueOf(matrix.getResultList()[i][j]));
+                        textFields[i][j].setText(String.valueOf(matrix.getList()[i][j]));
                     }
                 }
                 for (int i = 0; i < comboBox6.getSelectedIndex(); i++) {
@@ -828,49 +842,51 @@ class MatrixForm extends JFrame {
                     }
                 }
             }
-            if (comboBox.getSelectedIndex()==4){
+            if (comboBox.getSelectedIndex() == 4) {
 
                 Double[][] buff0 = new Double[comboBox6.getSelectedIndex()][comboBox7.getSelectedIndex()];
                 for (int i = 0; i < comboBox6.getSelectedIndex(); i++) {
                     for (int j = 0; j < comboBox7.getSelectedIndex(); j++) {
-                        if ((textFields[i][j].getText().equals(""))){
-                            JOptionPane.showMessageDialog(null,"Заповніть матрцю повністю!");
+                        if ((textFields[i][j].getText().equals(""))) {
+                            JOptionPane.showMessageDialog(null, "Заповніть матрцю повністю!");
                         }
-                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()), 1);
-                        buff0[i][j] = Double.valueOf(matrix.getFirstList()[i][j].toString());
+                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()));
+                        buff0[i][j] = Double.valueOf(matrix.getList()[i][j].toString());
                     }
                 }
-                if ((textFields0[0][0].getText().equals(""))){
-                    JOptionPane.showMessageDialog(null,"Введіть число!");
+                if ((textFields0[0][0].getText().equals(""))) {
+                    JOptionPane.showMessageDialog(null, "Введіть число!");
                 }
-                matrix.multiplicationByNumber(comboBox6.getSelectedIndex(),comboBox7.getSelectedIndex(),buff0,Double.valueOf(textFields0[0][0].getText()));
+                matrix.multiplicationByNumber(comboBox6.getSelectedIndex(), comboBox7.getSelectedIndex(), buff0, Double.valueOf(textFields0[0][0].getText()));
                 for (int i = 0; i < comboBox6.getSelectedIndex(); i++) {
                     for (int j = 0; j < comboBox7.getSelectedIndex(); j++) {
-                        textFields[i][j].setText(String.valueOf(matrix.getResultList()[i][j]));
+                        textFields[i][j].setText(String.valueOf(matrix.getList()[i][j]));
                     }
                 }
-            }if(comboBox.getSelectedIndex()==5){
+            }
+            if (comboBox.getSelectedIndex() == 5) {
 
-                Double[][] buff0 = new Double[comboBox1.getSelectedIndex()+1][comboBox1.getSelectedIndex()+1];
-                Double[][] buff1 = new Double[comboBox1.getSelectedIndex()+1][1];
-                for (int i = 0; i < comboBox1.getSelectedIndex()+1; i++) {
-                    for (int j = 0; j < comboBox1.getSelectedIndex()+1; j++) {
-                        if ((textFields[i][j].getText().equals(""))){
-                            JOptionPane.showMessageDialog(null,"Заповніть матрцю повністю!"); }
-                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()), 1);
-                        buff0[i][j] = Double.valueOf(matrix.getFirstList()[i][j].toString());
+                Double[][] buff0 = new Double[comboBox1.getSelectedIndex() + 1][comboBox1.getSelectedIndex() + 1];
+                Double[][] buff1 = new Double[comboBox1.getSelectedIndex() + 1][1];
+                for (int i = 0; i < comboBox1.getSelectedIndex() + 1; i++) {
+                    for (int j = 0; j < comboBox1.getSelectedIndex() + 1; j++) {
+                        if ((textFields[i][j].getText().equals(""))) {
+                            JOptionPane.showMessageDialog(null, "Заповніть матрцю повністю!");
+                        }
+                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()));
+                        buff0[i][j] = Double.valueOf(matrix.getList()[i][j].toString());
                     }
                 }
-                for (int i = 0; i < comboBox1.getSelectedIndex()+1; i++) {
-                    if ((textFields0[i][0].getText().equals(""))){
-                        JOptionPane.showMessageDialog(null,"Заповніть вектор повністю!");
+                for (int i = 0; i < comboBox1.getSelectedIndex() + 1; i++) {
+                    if ((textFields0[i][0].getText().equals(""))) {
+                        JOptionPane.showMessageDialog(null, "Заповніть вектор повністю!");
                     }
-                        matrix.add(i, 0, Double.valueOf(textFields0[i][0].getText()), 2);
-                        buff1[i][0] = Double.valueOf(matrix.getSecondList()[i][0].toString());
+                    matrix.add(i, 0, Double.valueOf(textFields0[i][0].getText()));
+                    buff1[i][0] = Double.valueOf(matrix.getList()[i][0].toString());
                 }
-                matrix.multiplicationByVector(comboBox1.getSelectedIndex()+1,comboBox1.getSelectedIndex()+1,buff0,buff1);
-                for (int i = 0; i < comboBox1.getSelectedIndex()+1; i++) {
-                        textFields[i][0].setText(String.valueOf(matrix.getResultList()[i][0]));
+                matrix.multiplicationByVector(comboBox1.getSelectedIndex() + 1, comboBox1.getSelectedIndex() + 1, buff0, buff1);
+                for (int i = 0; i < comboBox1.getSelectedIndex() + 1; i++) {
+                    textFields[i][0].setText(String.valueOf(matrix.getList()[i][0]));
                 }
                 for (int i = 6; i > -1; i--) {
                     for (int j = 6; j > 0; j--) {
@@ -883,93 +899,104 @@ class MatrixForm extends JFrame {
                     }
                 }
             }
-            if (comboBox.getSelectedIndex()==6){
+            if (comboBox.getSelectedIndex() == 6) {
 
                 Double[][] buff0 = new Double[comboBox6.getSelectedIndex()][comboBox7.getSelectedIndex()];
                 for (int i = 0; i < comboBox6.getSelectedIndex(); i++) {
                     for (int j = 0; j < comboBox7.getSelectedIndex(); j++) {
-                        if ((textFields[i][j].getText().equals(""))){
-                            JOptionPane.showMessageDialog(null,"Заповніть матрцю повністю!"); }
-                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()), 1);
-                        buff0[i][j] = Double.valueOf(matrix.getFirstList()[i][j].toString());
+                        if ((textFields[i][j].getText().equals(""))) {
+                            JOptionPane.showMessageDialog(null, "Заповніть матрцю повністю!");
+                        }
+                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()));
+                        buff0[i][j] = Double.valueOf(matrix.getList()[i][j].toString());
                     }
                 }
-                matrix.transposing(comboBox6.getSelectedIndex(),comboBox7.getSelectedIndex(),buff0);
+                matrix.transposing(comboBox6.getSelectedIndex(), comboBox7.getSelectedIndex(), buff0);
                 for (int i = 0; i < comboBox7.getSelectedIndex(); i++) {
                     for (int j = 0; j < comboBox6.getSelectedIndex(); j++) {
                         textFields0[i][j].setVisible(true);
                     }
                 }
                 for (int i = 6; i > -1; i--) {
-                    for (int j = 6; j > comboBox6.getSelectedIndex()-1; j--) {
+                    for (int j = 6; j > comboBox6.getSelectedIndex() - 1; j--) {
                         textFields0[i][j].setVisible(false);
                     }
                 }
-                for (int i = 6; i > comboBox7.getSelectedIndex()-1; i--) {
+                for (int i = 6; i > comboBox7.getSelectedIndex() - 1; i--) {
                     for (int j = 6; j > -1; j--) {
                         textFields0[i][j].setVisible(false);
                     }
                 }
                 for (int i = 0; i < comboBox7.getSelectedIndex(); i++) {
                     for (int j = 0; j < comboBox6.getSelectedIndex(); j++) {
-                        textFields0[i][j].setText(String.valueOf(matrix.getResultList()[i][j]));
+                        textFields0[i][j].setText(String.valueOf(matrix.getList()[i][j]));
                     }
                 }
-            }   if (comboBox.getSelectedIndex()==7){
+            }
+            if (comboBox.getSelectedIndex() == 7) {
 
-                Double[][] buff0 = new Double[comboBox1.getSelectedIndex()+1][comboBox1.getSelectedIndex()+1];
-                for (int i = 0; i < comboBox1.getSelectedIndex()+1; i++) {
-                    for (int j = 0; j < comboBox1.getSelectedIndex()+1; j++) {
-                        if ((textFields[i][j].getText().equals(""))){
-                            JOptionPane.showMessageDialog(null,"Заповніть матрцю повністю!"); }
-                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()), 1);
-                        buff0[i][j] = Double.valueOf(matrix.getFirstList()[i][j].toString());
+                Double[][] buff0 = new Double[comboBox1.getSelectedIndex() + 1][comboBox1.getSelectedIndex() + 1];
+                for (int i = 0; i < comboBox1.getSelectedIndex() + 1; i++) {
+                    for (int j = 0; j < comboBox1.getSelectedIndex() + 1; j++) {
+                        if ((textFields[i][j].getText().equals(""))) {
+                            JOptionPane.showMessageDialog(null, "Заповніть матрцю повністю!");
+                        }
+                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()));
+                        buff0[i][j] = Double.valueOf(matrix.getList()[i][j].toString());
                     }
                 }
-                if (matrix.determinate(comboBox1.getSelectedIndex()+1,buff0)==0){
-                    JOptionPane.showMessageDialog(null,"Обернена матриця не може бути знайдена, бо детермінант иатриці дорівнює 0!"); }
-                matrix.revers(comboBox1.getSelectedIndex()+1,buff0);
-                for (int i = 0; i < comboBox1.getSelectedIndex()+1; i++) {
-                    for (int j = 0; j < comboBox1.getSelectedIndex()+1; j++) {
-                        textFields0[i][j].setText(String.valueOf(matrix.getResultList()[i][j]));
+                if (matrix.determinate(comboBox1.getSelectedIndex() + 1, buff0) == 0) {
+                    JOptionPane.showMessageDialog(null, "Обернена матриця не може бути знайдена, бо детермінант иатриці дорівнює 0!");
+                }
+                matrix.revers(comboBox1.getSelectedIndex() + 1, buff0);
+                for (int i = 0; i < comboBox1.getSelectedIndex() + 1; i++) {
+                    for (int j = 0; j < comboBox1.getSelectedIndex() + 1; j++) {
+                        textFields0[i][j].setText(String.valueOf(matrix.getList()[i][j]));
                     }
                 }
-            }   if (comboBox.getSelectedIndex()==8){
+            }
+            if (comboBox.getSelectedIndex() == 8) {
 
-                Double[][] buff0 = new Double[comboBox1.getSelectedIndex()+1][comboBox1.getSelectedIndex()+1];
+                Double[][] buff0 = new Double[comboBox1.getSelectedIndex() + 1][comboBox1.getSelectedIndex() + 1];
 
-                for (int i = 0; i < comboBox1.getSelectedIndex()+1; i++) {
-                    for (int j = 0; j < comboBox1.getSelectedIndex()+1; j++) {
-                        if ((textFields[i][j].getText().equals(""))){
-                            JOptionPane.showMessageDialog(null,"Заповніть матрцю повністю!"); }
-                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()), 1);
-                        buff0[i][j] = Double.valueOf(matrix.getFirstList()[i][j].toString()); }
+                for (int i = 0; i < comboBox1.getSelectedIndex() + 1; i++) {
+                    for (int j = 0; j < comboBox1.getSelectedIndex() + 1; j++) {
+                        if ((textFields[i][j].getText().equals(""))) {
+                            JOptionPane.showMessageDialog(null, "Заповніть матрцю повністю!");
+                        }
+                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()));
+                        buff0[i][j] = Double.valueOf(matrix.getList()[i][j].toString());
+                    }
                 }
                 textFields0[0][0].setVisible(true);
-                textFields0[0][0].setText(String.valueOf(matrix.determinate(comboBox1.getSelectedIndex()+1,buff0)));
+                textFields0[0][0].setText(String.valueOf(matrix.determinate(comboBox1.getSelectedIndex() + 1, buff0)));
                 for (int i = 6; i > -1; i--) {
                     for (int j = 6; j > 0; j--) {
-                        textFields0[i][j].setVisible(false); }
+                        textFields0[i][j].setVisible(false);
+                    }
                 }
                 for (int i = 6; i > 0; i--) {
                     for (int j = 6; j > -1; j--) {
-                        textFields0[i][j].setVisible(false); }
-                }
-            } if(comboBox.getSelectedIndex()==9){
-
-                Double[][] buff0 = new Double[comboBox1.getSelectedIndex()+1][comboBox1.getSelectedIndex()+1];
-                for (int i = 0; i < comboBox1.getSelectedIndex()+1; i++) {
-                    for (int j = 0; j < comboBox1.getSelectedIndex()+1; j++) {
-                        if ((textFields[i][j].getText().equals(""))){
-                            JOptionPane.showMessageDialog(null,"Заповніть матрцю повністю!"); }
-                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()), 1);
-                        buff0[i][j] = Double.valueOf(matrix.getFirstList()[i][j].toString());
+                        textFields0[i][j].setVisible(false);
                     }
                 }
-                matrix.expoonent(comboBox10.getSelectedIndex(),comboBox1.getSelectedIndex()+1,comboBox1.getSelectedIndex()+1,buff0);
-                for (int i = 0; i < comboBox1.getSelectedIndex()+1; i++) {
-                    for (int j = 0; j < comboBox1.getSelectedIndex()+1; j++) {
-                        textFields0[i][j].setText(String.valueOf(matrix.getResultList()[i][j]));
+            }
+            if (comboBox.getSelectedIndex() == 9) {
+
+                Double[][] buff0 = new Double[comboBox1.getSelectedIndex() + 1][comboBox1.getSelectedIndex() + 1];
+                for (int i = 0; i < comboBox1.getSelectedIndex() + 1; i++) {
+                    for (int j = 0; j < comboBox1.getSelectedIndex() + 1; j++) {
+                        if ((textFields[i][j].getText().equals(""))) {
+                            JOptionPane.showMessageDialog(null, "Заповніть матрцю повністю!");
+                        }
+                        matrix.add(i, j, Double.valueOf(textFields[i][j].getText()));
+                        buff0[i][j] = Double.valueOf(matrix.getList()[i][j].toString());
+                    }
+                }
+                matrix.expoonent(comboBox10.getSelectedIndex(), comboBox1.getSelectedIndex() + 1, comboBox1.getSelectedIndex() + 1, buff0);
+                for (int i = 0; i < comboBox1.getSelectedIndex() + 1; i++) {
+                    for (int j = 0; j < comboBox1.getSelectedIndex() + 1; j++) {
+                        textFields0[i][j].setText(String.valueOf(matrix.getList()[i][j]));
                     }
                 }
             }
